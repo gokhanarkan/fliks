@@ -1,0 +1,99 @@
+.search-div {
+	margin-bottom: 2em;
+}
+
+.search-h1 {
+	margin: 1rem 0 1.5rem 0;
+}
+
+.btn-link {
+	margin-top: 20px;
+}
+
+.nflix-results {
+	margin-top: 30px;
+}
+
+.card-img {
+	margin-top: 30%;
+	margin-left: 7.5%;
+}
+
+.fliks-results {
+	width: 470px;
+	display: inline-table !important;
+	height:325px;
+}
+
+.about_modal {
+	cursor: context-menu;
+}
+
+.modal-body p {
+	color: #44475a;
+}
+
+.modal-title {
+	color: #44475a;
+}
+
+.card-title {
+	color: #44475a;
+}
+
+.card-body p{
+	color: #44475a;
+}
+
+.btn-link {
+	color: #6272a4 !important;
+}
+
+p, h1, h2, h3, h4, h5 {
+	color: #f8f8f2;
+}
+
+.btn-dark {
+	background-color: #44475a !important;
+}
+
+.navbar-dark {
+	background-color: #44475a;
+}
+
+.navbar-brand {
+	background-color: none;
+}
+
+.container {
+	text-align: center;
+}
+
+@media only screen and (max-width: 380px){
+	.btn {
+		margin-bottom: 5px;
+	}
+
+}
+
+@media only screen and (max-width: 770px){
+	.fliks-results {
+		width: 75%;
+		display: inline-table !important;
+	}
+
+	.card-img {
+		margin-top: 0;
+		margin-left: 0;
+	}
+
+	.nflix-results {
+		margin-top: 0;
+	}
+
+	.btn-link {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+}
+
