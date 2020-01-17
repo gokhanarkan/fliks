@@ -13,7 +13,7 @@ The app runs on Heroku. Checks with multiple API's.
 This was the first time I used Redis. I loved it.
 I am caching some information to avoid making multiple API calls, and it also helps to speed up the application.
 
-The ```app/functions/instance/config.py``` is storing the credentials, for which services I use feel free to drop me a line.
+The ```app/functions/instance/config.py``` is storing the credentials (it's the only file missing from this repo), for which services I use feel free to drop me a line.
 
 ```
 Countries = {
