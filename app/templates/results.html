@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h3 class="search-div">Here is the result for {{ search }} </h3>
+
+{% for item in result %}
+
+<div class="card mb-3">
+  <img src="{{ item['picture'] }}" class="card-img-top" alt="Image not available">
+  <div class="card-body">
+	    <h5 class="card-title">{{ item['name'] }}</h5>
+	    <p class="card-text">Here are the current services that have {{ item['name'] }} on:</p>
+	    {% for location in item['locations'] %}
+	        {% if location[1] == None %}
+	            <img src="{{ location[2] }}" alt="{{ location[0] }}">
+	        {% else %}
+	            <a href="{{ location[1] }}"><img src="{{ location[2] }}" alt="{{ location[0] }}"></a>
+	        {% endif %}
+	    {% endfor %}
+	    <br>
+  </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}

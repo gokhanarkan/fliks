@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h3>Here is the result for {{ search }}</h3>
+
+<div id="loading">
+</div>
+
+{% for item in result %}
+
+<div class="card mb-3 fliks-results" style="margin-bottom: 0.3rem !important;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      {% if item['large_image'] %}
+        <img src="{{ item['large_image'] }}" class="card-img" alt="{{ item['title'] }}">
+      {% else %}
+        <img src="{{ item['image'] }}" class="card-img" alt="{{ item['title'] }}">
+      {% endif %}
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title nflix-results">{{ item['title'] }}  ({{ item['release_date'] }})</h5>
+        <p class="card-text">{{ item['synopsis'] }}</p>
+        <button class="btn btn-outline-secondary" style="margin-top:10px" onclick="submit({{ item['netflixid'] }})">Get country details</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+
+{% include 'modals/country.html' %}
+
+<div class="modal fade" id="loading" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+</div>
+
+{% endblock %}

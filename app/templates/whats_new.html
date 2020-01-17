@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1 class="search-h1">What's new on Netflix?</h1>
+
+<div id="loading">
+    
+</div>
+
+{% for item in result %}
+
+<div class="card mb-3 fliks-results" style="margin-bottom: 0.3rem !important;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+
+      {% if item['large_image'] %}
+
+        <img src="{{ item['large_image'] }}" class="card-img" alt="{{ item['title'] }}">
+
+      {% else %}
+
+        <img src="{{ item['image'] }}" class="card-img" alt="{{ item['title'] }}">
+
+      {% endif %}
+    
+
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ item['title'] }}  ({{ item['release_date'] }})</h5>
+        <h6 class="card-subtitle mb-2 text-muted" style="margin-bottom: 0">
+          
+          {% if item['rating'] %}
+          Rating: {{ item['rating'] }}
+          {% endif %}
+          {% if item['time'] %}
+          Time: {{ item['time'] }}
+          {% endif %}
+        
+        </h6>
+        <p class="card-text" style="margin-bottom:0">{{ item['synopsis'] }}</p>
+
+        <a href="{{ item['link'] }}" target="_blank" class="btn btn-link">Watch</a>
+
+        <button class="btn btn-link" onclick="submit({{ item['netflixid'] }})">Country details</button>
+
+        {% if item['download'] == "1" %}
+
+          <p class="card-text"><small class="text-muted">This content is downloadable</small></p>
+
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+
+{% include 'modals/country.html' %}
+
+<div class="modal fade" id="loading" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+</div>
+    
+{% endblock %}
