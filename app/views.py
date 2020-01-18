@@ -7,7 +7,8 @@ from functions import *
 def index():
     if request.method == 'POST':
         try:
-            r = request.form['normal']  #  If it's a normal request, do the normal search
+            #  If it's a normal request, do the normal search
+            r = request.form['normal']
             result = request.form['flix']
             final_result = check_services(result)
             if final_result:
@@ -16,7 +17,8 @@ def index():
                 return render_template('notfound.html')
         except:
             r = request.form['netflix']
-            result = request.form['flix']  # If it's a netflix request, do the netflix search
+            # If it's a netflix request, do the netflix search
+            result = request.form['flix']
             final_result = redis_netflix_search(result)
             if final_result:
                 return render_template('netflix-results.html', result=final_result, search=result)
@@ -40,8 +42,28 @@ def get_country_list():
 
 @app.route('/whats_new', methods=["GET"])
 def whats_new():
-    final_result = redis_content()
-    return render_template('whats_new.html', result=final_result)
+    try:
+        user_location = check_user_location(
+            request.headers['X-Forwarded-For'])['country']
+        if user_location:
+            final_result = redis_content(user_location)
+            country = supported_countries[user_location]
+            return render_template('whats_new.html', result=final_result, country=country, supported_countries=supported_countries)
+        else:
+            final_result = redis_content('us')
+            return render_template('whats_new.html', result=final_result, country=False, supported_countries=supported_countries)
+    except:
+        # Couldn't detect the country
+        final_result = redis_content('us')
+        return render_template('whats_new.html', result=final_result, country=False, supported_countries=supported_countries)
+
+
+@app.route('/change_country', methods=["POST"])
+def change_country():
+    if request.method == 'POST':
+        country = request.form['country']
+        what_new_data = redis_content(country)
+        return json.dumps(what_new_data)
 
 
 @app.route('/flushcaches', methods=["GET"])

@@ -5,43 +5,51 @@ import time
 import redis
 
 
-def get_whats_new(country="gb"):
-    url = netflix_url
-    querystring = {"q": "get:new7:{}".format(country), "p": "1", "t": "ns", "st": "adv"}
-    headers = netflix_headers
-    try:
-        response = requests.request("GET", url, headers=headers, params=querystring)
-        data = json.loads(response.text)['ITEMS']
-    except:
-        return False
+def get_whats_new(country):
 
-    final_result = []
+    if country in supported_countries:
+        url = netflix_url
+        querystring = {"q": "get:new7:{}".format(
+            country), "p": "1", "t": "ns", "st": "adv"}
+        headers = netflix_headers
+        try:
+            response = requests.request(
+                "GET", url, headers=headers, params=querystring)
+            data = json.loads(response.text)['ITEMS']
+        except:
+            return False
 
-    for item in data:
-        synopsis = item['synopsis'].split("<br>")
+        final_result = []
 
-        result = {
-            "netflixid": item['netflixid'],
-            "title": item['title'],
-            "image": item['image'],
-            "synopsis": synopsis[0],
-            "rating": item['rating'],
-            "type": item['type'],
-            "release_date": item['released'],
-            "time": item['runtime'],
-            "download": item['download'],
-            "large_image": item['largeimage'],
-            "link": "https://www.netflix.com/title/" + item['netflixid']
-        }
+        for item in data:
+            synopsis = item['synopsis'].split("<br>")
 
-        final_result.append(result)
+            result = {
+                "netflixid": item['netflixid'],
+                "title": item['title'],
+                "image": item['image'],
+                "synopsis": synopsis[0],
+                "rating": item['rating'],
+                "type": item['type'],
+                "release_date": item['released'],
+                "time": item['runtime'],
+                "download": item['download'],
+                "large_image": item['largeimage'],
+                "link": "https://www.netflix.com/title/" + item['netflixid']
+            }
 
-    return final_result
+            final_result.append(result)
+
+        return final_result
+    else:
+        # Recursively sending the default value
+        return get_whats_new('us')
 
 
-def redis_content():
+def redis_content(country):
     named_tuple = time.localtime()  # get struct_time
     time_string = time.strftime("%m/%d/%Y", named_tuple)
+    time_string += country
 
     try:
         r = redis.from_url(heroku_redis)
@@ -49,9 +57,9 @@ def redis_content():
             unpacked_json = json.loads(r.get(time_string))
             return unpacked_json
         else:
-            final_result = get_whats_new()
+            final_result = get_whats_new(country)
             jsonify = json.dumps(final_result)
             r.set(time_string, jsonify)
             return final_result
     except:
-        return get_whats_new()
+        return get_whats_new(country)
