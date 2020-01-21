@@ -6,7 +6,11 @@
 {% for item in result %}
 
 <div class="card mb-3">
-  <img src="{{ item['picture'] }}" class="card-img-top" alt="Image not available">
+	{% if item['picture'] %}
+		<img src="{{ item['picture'] }}" class="card-img-top">
+	{% else %}
+		<p class="card-text non-picture">Image is not available</p>
+	{% endif %}
   <div class="card-body">
 	    <h5 class="card-title">{{ item['name'] }}</h5>
 	    <p class="card-text">Here are the current services that have {{ item['name'] }} on:</p>

@@ -20,8 +20,17 @@ def check_services(name):
     for item in data:
         result = {
             "name": item['name'],
-            "picture": item['picture'],
         }
+
+        try:
+            image_response = requests.get(item['picture'])
+            if image_response:
+                result['picture'] = item['picture']
+            else:
+                result['picture'] = False
+        except:
+            result['picture'] = False
+
         location = []
         for l in item['locations']:
             location_model = [l['display_name'], l['url'], l['icon']]

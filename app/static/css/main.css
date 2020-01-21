@@ -1,3 +1,8 @@
+.non-picture {
+	color:black;
+	margin-top: 15px;
+}
+
 .search-div {
 	margin-bottom: 2em;
 }
@@ -94,6 +99,10 @@ p, h1, h2, h3, h4, h5 {
 	.btn-link {
 		margin-top: 0;
 		margin-bottom: 0;
+	}
+	
+	.search-div {
+		padding-top: 40%;
 	}
 }
 
