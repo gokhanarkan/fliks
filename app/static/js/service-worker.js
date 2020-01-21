@@ -1,0 +1,3 @@
+if ('serviceWorker' in navigator) {
+
+}

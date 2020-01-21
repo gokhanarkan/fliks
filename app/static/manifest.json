@@ -1,0 +1,36 @@
+{
+    "name": "Fliks.XYZ",
+    "short_name": "Fliks",
+    "theme_color": "#34A5DA",
+    "background_color": "#FFFFFF",
+    "icons": [
+        {
+            "src": "cloud-icon.png",
+            "type": "image/png",
+            "sizes": "48x48"
+        },
+        {
+            "src": "cloud-icon.png",
+            "type": "image/png",
+            "sizes": "96x96"
+        },
+        {
+            "src": "cloud-icon.png",
+            "type": "image/png",
+            "sizes": "144x144"
+        },
+        {
+            "src": "cloud-icon.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "cloud-icon.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "portrait"
+}

@@ -73,3 +73,8 @@ def clear_redis():
         return "Cleared", 200
     else:
         return "Not Cleared", 400
+
+
+@app.route('/service-worker.js')
+def service_worker():
+    return app.send_static_file('service-worker.js')
