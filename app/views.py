@@ -2,7 +2,7 @@ from __init__ import app
 from flask import render_template, request
 from functions import *
 
-
+# Main page
 @app.route('/', methods=["GET", "POST"])
 def index():
     if request.method == 'POST':
@@ -12,22 +12,22 @@ def index():
             result = request.form['flix']
             final_result = check_services(result)
             if final_result:
-                return render_template('results.html', result=final_result, search=result)
+                return render_template('results.html', result=final_result, search=result, existing_search=result)
             else:
-                return render_template('notfound.html')
+                return render_template('notfound.html', existing_search=result)
         except:
             r = request.form['netflix']
             # If it's a netflix request, do the netflix search
             result = request.form['flix']
             final_result = redis_netflix_search(result)
             if final_result:
-                return render_template('netflix-results.html', result=final_result, search=result)
+                return render_template('netflix-results.html', result=final_result, search=result, existing_search=result)
             else:
-                return render_template('notfound.html')
+                return render_template('notfound.html', existing_search=result)
     else:
         return render_template('layout.html')
 
-
+# Ajax query for getting country information
 @app.route('/get_country_list', methods=["POST"])
 def get_country_list():
     if request.method == 'POST':
@@ -39,7 +39,7 @@ def get_country_list():
             result = create_html_result({'country_list': ['Not Found']})
             return result
 
-
+# What's New on Netflix
 @app.route('/whats_new', methods=["GET"])
 def whats_new():
     try:
@@ -53,11 +53,11 @@ def whats_new():
             final_result = redis_content('us')
             return render_template('whats_new.html', result=final_result, country=False, supported_countries=supported_countries)
     except:
-        # Couldn't detect the country
+        # Couldn't detect the country, going with the default country
         final_result = redis_content('us')
         return render_template('whats_new.html', result=final_result, country=False, supported_countries=supported_countries)
 
-
+# Changing country in What's New
 @app.route('/change_country', methods=["POST"])
 def change_country():
     if request.method == 'POST':
@@ -65,7 +65,7 @@ def change_country():
         what_new_data = redis_content(country)
         return json.dumps(what_new_data)
 
-
+# Flushing caches [a get request with api key needed]
 @app.route('/flushcaches', methods=["GET"])
 def clear_redis():
     if check_apikey(request.args):
@@ -74,7 +74,7 @@ def clear_redis():
     else:
         return "Not Cleared", 400
 
-
+# Service worker file for PWA
 @app.route('/service-worker.js')
 def service_worker():
     return app.send_static_file('service-worker.js')

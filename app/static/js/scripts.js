@@ -9,7 +9,7 @@ function change_country(country, country_name) {
     $.post("/change_country", { "country": country }, function (data) {
         // Creating array out of the data
         let result = JSON.parse(data);
-        final_result = create_results(result);
+        let final_result = create_results(result);
         $("#original-results").hide()
         $("#ajax-results").html(final_result);
         $("#country-results").html("Here are the results for " + country_name);
@@ -18,26 +18,25 @@ function change_country(country, country_name) {
 
 function create_results(result) {
 
-    final_result = "";
+    let final_result = "";
     for (let i = 0; i < result.length; i++) {
 
-        obj = result[i];
+        let obj = result[i];
 
-        netflixid = obj.netflixid;
+        let netflixid = obj.netflixid;
 
         if (obj.large_image) {
-            image = obj.large_image;
+            let image = obj.large_image;
         } else {
-            image = obj.image;
+            let image = obj.image;
         }
-        title = obj.title;
-        release_date = obj.release_date;
-        rating = obj.rating;
-        time = obj.time;
-        synopsis = obj.synopsis;
-        link = obj.link;
+        let title = obj.title;
+        let release_date = obj.release_date;
+        let rating = obj.rating;
+        let time = obj.time;
+        let synopsis = obj.synopsis;
+        let link = obj.link;
 
-        // let a = `<h1>this is a test ${netflixid}</h1>`;
         let first_part =
             `<div class="card mb-3 fliks-results" style="margin-bottom: 0.3rem !important;">
             <div class="row no-gutters">
