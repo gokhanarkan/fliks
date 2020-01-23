@@ -6,7 +6,6 @@ import json
 
 def get_netflix_details(name):
     url = netflix_url
-    name = name.replace(' ', '%20')
     querystring = {"q": "{}-!1900,2020-!0,5-!0,10-!0-!Any-!Any-!Any-!gt100-!{}".format(name, '{downloadable}'),
                    "t": "ns", "cl": "all", "st": "adv", "ob": "Relevance", "p": "1", "sa": "or"}
     headers = netflix_headers
