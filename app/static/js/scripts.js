@@ -24,16 +24,26 @@ function create_results(result) {
         let obj = result[i];
 
         let netflixid = obj.netflixid;
-
+        let image;
         if (obj.large_image) {
-            let image = obj.large_image;
+            image = obj.large_image;
         } else {
-            let image = obj.image;
+            image = obj.image;
         }
         let title = obj.title;
         let release_date = obj.release_date;
-        let rating = obj.rating;
-        let time = obj.time;
+        let rating;
+        if (obj.rating && obj.rating != 0) {
+            rating = obj.rating;
+        } else {
+            rating = 'N/A'
+        }
+        let time;
+        if (obj.time) {
+            time = obj.time;
+        } else {
+            time = 'N/A'
+        }
         let synopsis = obj.synopsis;
         let link = obj.link;
 
