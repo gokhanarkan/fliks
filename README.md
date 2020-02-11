@@ -14,6 +14,22 @@ I am caching some information to avoid making multiple API calls, and it also he
 
 ---
 
+## Images
+
+### Search Across Services
+![Search across services](https://i.imgur.com/eZSKfRJ.png)
+
+### Netflix Search
+![Netflix search](https://i.imgur.com/hsjwgf0.png)
+
+### Checking Available Countries
+![Available countries](https://i.imgur.com/hnz60F2.png)
+
+### What's New on Netflix
+![New on Netflix](https://i.imgur.com/1G6QNva.png)
+
+---
+
 **Update 1**
 OK. I listened some feedbacks. What's New part is now giving the information based on your IP address. I also added the country list dropdown.
 
