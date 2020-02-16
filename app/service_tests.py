@@ -1,9 +1,9 @@
 from __init__ import *
 
 
-def test_across_services(arr):
+def test_across_services(arr, country):  # Update here too
     for item in arr:
-        json_value = check_services(item)
+        json_value = check_services(item, country)
         if not json_value:
             return False
 
@@ -43,7 +43,7 @@ countries = ['gb', 'us', 'tr', 'asd', '123!']
 
 if __name__ == "__main__":
     try:
-        test_across_services(movies)
+        test_across_services(movies, "uk")
         test_netflix_search(movies)
         test_redis_connection()
         test_whats_new(countries)

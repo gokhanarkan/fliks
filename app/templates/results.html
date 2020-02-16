@@ -1,30 +1,58 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h3 class="search-div">Here is the result for {{ search }} </h3>
+<h3 class="search-div" id="ondemand-results" style="margin-bottom:0;">Here is the result for "{{ search }}" in
+	{{ country }} </h3>
 
-{% for item in result %}
-
-<div class="card mb-3">
-	{% if item['picture'] %}
-		<img src="{{ item['picture'] }}" class="card-img-top">
-	{% else %}
-		<p class="card-text non-picture">Image is not available</p>
-	{% endif %}
-  <div class="card-body">
-	    <h5 class="card-title">{{ item['name'] }}</h5>
-	    <p class="card-text">Here are the current services that have {{ item['name'] }} on:</p>
-	    {% for location in item['locations'] %}
-	        {% if location[1] == None %}
-	            <img src="{{ location[2] }}" alt="{{ location[0] }}">
-	        {% else %}
-	            <a href="{{ location[1] }}"><img src="{{ location[2] }}" alt="{{ location[0] }}"></a>
-	        {% endif %}
-	    {% endfor %}
-	    <br>
-  </div>
+<div class="btn-group search-h1">
+	<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+		aria-expanded="false">
+		Not your country?
+	</button>
+	<div class="dropdown-menu">
+		{% for country in supported_countries %}
+		<a class="dropdown-item"
+			onclick="ondemand_change_country('{{ search }}', '{{ country }}')">{{ country.upper() }}</a>
+		{% endfor %}
+	</div>
 </div>
 
-{% endfor %}
+<div id="ajax-results">
+
+</div>
+
+{% if result %}
+
+<div id="original-results">
+	{% for item in result %}
+
+	<div class="card mb-3">
+		{% if item['picture'] %}
+		<img src="{{ item['picture'] }}" class="card-img-top">
+		{% else %}
+		<p class="card-text non-picture">Image is not available</p>
+		{% endif %}
+		<div class="card-body">
+			<h5 class="card-title">{{ item['name'] }}</h5>
+			<p class="card-text">Here are the current services that have {{ item['name'] }} on:</p>
+			{% for location in item['locations'] %}
+			{% if location[1] == None %}
+			<img src="{{ location[2] }}" alt="{{ location[0] }}">
+			{% else %}
+			<a href="{{ location[1] }}"><img src="{{ location[2] }}" alt="{{ location[0] }}"></a>
+			{% endif %}
+			{% endfor %}
+			<br>
+		</div>
+	</div>
+
+	{% endfor %}
+</div>
+
+{% else %}
+
+<h1>Not Available</h1>
+
+{% endif %}
 
 {% endblock %}

@@ -1,14 +1,20 @@
-from .instance.config import *
+from .instance import *
 import requests
 import json
+from .helper_methods import check_ip
 
 
-def check_services(name):
+def check_services(name, country):
+
     url = service_check_url
-    querystring = {"term": name}
+    querystring = {
+        "term": name,
+        "country": country
+    }
     headers = service_check_headers
     try:
-        response = requests.request("GET", url, headers=headers, params=querystring)
+        response = requests.request(
+            "GET", url, headers=headers, params=querystring)
         data = json.loads(response.text)['results']
     except:
         return False
@@ -18,10 +24,10 @@ def check_services(name):
 
     final_result = []
     for item in data:
+
         result = {
             "name": item['name'],
         }
-
         try:
             image_response = requests.get(item['picture'])
             if image_response:

@@ -1,4 +1,4 @@
-from .instance.config import *
+from .instance import *
 import redis
 import json
 from ip2geotools.databases.noncommercial import DbIpCity
@@ -39,6 +39,7 @@ def cache_details(key, value):
     r.set(key, json.dumps(value))
 
 
+# Scale this function for across services
 def check_user_location(ip_address):
 
     r = redis.from_url(redis_to_go)
@@ -66,3 +67,18 @@ def check_user_location(ip_address):
         except:
             # If something's wrong it returns False
             return False
+
+
+def check_ip(ip):
+    response = DbIpCity.get(ip, api_key='free')
+    if response:
+        country = response.country.lower()
+        if country == 'gb':
+            return 'uk'
+        else:
+            if country in ondemand_supported_countries:
+                return country
+            else:
+                return False
+    else:
+        return False

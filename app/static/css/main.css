@@ -1,3 +1,7 @@
+#ondemand-results {
+	padding-top: 0;
+}
+
 .non-picture {
 	color:black;
 	margin-top: 15px;
@@ -100,7 +104,7 @@ p, h1, h2, h3, h4, h5 {
 		margin-top: 0;
 		margin-bottom: 0;
 	}
-	
+
 	.search-div {
 		padding-top: 30%;
 	}

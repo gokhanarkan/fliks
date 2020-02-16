@@ -10,11 +10,16 @@ def index():
             #  If it's a normal request, do the normal search
             r = request.form['normal']
             result = request.form['flix']
-            final_result = check_services(result)
-            if final_result:
-                return render_template('results.html', result=final_result, search=result, existing_search=result)
-            else:
-                return render_template('notfound.html', existing_search=result)
+            try:
+                ip = request.headers['X-Forwarded-For']
+                country = check_ip(ip)
+                if not country:
+                    country = "uk"
+            except:
+                country = "uk"
+            final_result = check_services(result, country)
+            print(final_result)
+            return render_template('results.html', result=final_result, search=result, existing_search=result, country=country.upper(), supported_countries=ondemand_supported_countries)
         except:
             r = request.form['netflix']
             # If it's a netflix request, do the netflix search
@@ -53,7 +58,7 @@ def whats_new():
             final_result = redis_content('us')
             return render_template('whats_new.html', result=final_result, country=False, supported_countries=supported_countries)
     except:
-        # Couldn't detect the country, going with the default country
+        # Couldn't detect the country
         final_result = redis_content('us')
         return render_template('whats_new.html', result=final_result, country=False, supported_countries=supported_countries)
 
@@ -65,7 +70,16 @@ def change_country():
         what_new_data = redis_content(country)
         return json.dumps(what_new_data)
 
-# Flushing caches [a get request with api key needed]
+# Changing country in Across Services
+@app.route('/ondemand_change_country', methods=["POST"])
+def ondemand_change_country():
+    if request.method == 'POST':
+        term = request.form['search']
+        country = request.form['country']
+        service_data = check_services(term, country)
+        return json.dumps(service_data)
+
+# Flushing caches
 @app.route('/flushcaches', methods=["GET"])
 def clear_redis():
     if check_apikey(request.args):
@@ -74,7 +88,7 @@ def clear_redis():
     else:
         return "Not Cleared", 400
 
-# Service worker file for PWA
+# Service worker file for PWA settings
 @app.route('/service-worker.js')
 def service_worker():
     return app.send_static_file('service-worker.js')
