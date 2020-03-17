@@ -1,5 +1,4 @@
-heroku_redis = 'HEROKU REDIS SERVICE'
-redis_to_go = 'REDIS TO GO SERVICE'
+redis_url = 'CLOUD BASED REDIS URL'
 service_check_url = "FIRST API"
 service_check_headers = {
     'api-host': "FIRST API HOST",

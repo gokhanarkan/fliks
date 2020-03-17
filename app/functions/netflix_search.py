@@ -41,7 +41,7 @@ def get_netflix_details(name):
 
 def redis_netflix_search(name):
     try:
-        r = redis.from_url(heroku_redis)
+        r = redis.from_url(redis_url)
         name = name.lower()
         if r.exists(name):
             unpacked_json = json.loads(r.get(name))

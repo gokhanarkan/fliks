@@ -15,10 +15,8 @@ def create_html_result(json_file):
 
 def flush_redis():
 
-    r1 = redis.from_url(heroku_redis)
-    r1.flushall()
-    r2 = redis.from_url(redis_to_go)
-    r2.flushall()
+    r = redis.from_url(redis_url)
+    r.flushall()
     return True
 
 
@@ -35,14 +33,13 @@ def check_apikey(key):
 
 def cache_details(key, value):
 
-    r = redis.from_url(redis_to_go)
+    r = redis.from_url(redis_url)
     r.set(key, json.dumps(value))
 
 
-# Scale this function for across services
 def check_user_location(ip_address):
 
-    r = redis.from_url(redis_to_go)
+    r = redis.from_url(redis_url)
     user = r.get(ip_address)
 
     if user:

@@ -25,8 +25,7 @@ def test_country_availability(netflixid):
 
 def test_redis_connection():
     try:
-        r1 = redis.from_url(heroku_redis)
-        r2 = redis.from_url(redis_to_go)
+        r = redis.from_url(redis_url)
     except:
         return False
 

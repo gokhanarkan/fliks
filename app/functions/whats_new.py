@@ -52,7 +52,7 @@ def redis_content(country):
     time_string += country
 
     try:
-        r = redis.from_url(heroku_redis)
+        r = redis.from_url(redis_url)
         if r.exists(time_string):
             unpacked_json = json.loads(r.get(time_string))
             return unpacked_json

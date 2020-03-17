@@ -27,7 +27,7 @@ def get_country_availability(netflixid):
 
 def redis_entry(key):
     try:
-        r = redis.from_url(redis_to_go)
+        r = redis.from_url(redis_url)
         if r.exists(key):
             unpacked_json = json.loads(r.get(key))
             return unpacked_json
