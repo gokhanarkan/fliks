@@ -3,11 +3,11 @@
 	<form action="/" method="POST">
 		{% if existing_search %}
 		<input name="flix" class="form-control form-control-lg search-div" type="text" placeholder="Planet Earth"
-			pattern="[A-Za-z0-9\s]{2,20}" title="Minimum 2 and maximum 20 letters or numbers" required
+			pattern="[A-Za-z0-9\s]{2,29}" title="Minimum 2 and maximum 29 letters or numbers" required
 			value='{{ existing_search }}'>
 		{% else %}
 		<input name="flix" class="form-control form-control-lg search-div" type="text" placeholder="Planet Earth"
-			pattern="[A-Za-z0-9\s]{2,25}" title="Minimum 2 and maximum 25 letters or numbers" required>
+			pattern="[A-Za-z0-9\s]{2,29}" title="Minimum 2 and maximum 29 letters or numbers" required>
 		{% endif %}
 		<button class="btn btn-dark" type="submit" name="normal" value="normal">Search across services</button>
 		<button class="btn btn-danger" type="submit" name="netflix" value="netflix">Search on Netflix</button>
