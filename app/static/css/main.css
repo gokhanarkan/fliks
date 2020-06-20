@@ -3,7 +3,7 @@
 }
 
 .non-picture {
-	color:black;
+	color: black;
 	margin-top: 15px;
 }
 
@@ -13,6 +13,12 @@
 
 .search-h1 {
 	margin: 1rem 0 1.5rem 0;
+}
+
+.country-select {
+	width: 50% !important;
+	margin: auto !important;
+	padding: auto !important;
 }
 
 .btn-link {
@@ -31,7 +37,7 @@
 .fliks-results {
 	width: 470px;
 	display: inline-table !important;
-	height:325px;
+	height: 325px;
 }
 
 .about_modal {
@@ -50,7 +56,7 @@
 	color: #44475a;
 }
 
-.card-body p{
+.card-body p {
 	color: #44475a;
 }
 
@@ -58,7 +64,12 @@
 	color: #6272a4 !important;
 }
 
-p, h1, h2, h3, h4, h5 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
 	color: #f8f8f2;
 }
 
@@ -78,14 +89,14 @@ p, h1, h2, h3, h4, h5 {
 	text-align: center;
 }
 
-@media only screen and (max-width: 380px){
+@media only screen and (max-width: 380px) {
 	.btn {
 		margin-bottom: 5px;
 	}
 
 }
 
-@media only screen and (max-width: 770px){
+@media only screen and (max-width: 770px) {
 	.fliks-results {
 		width: 75%;
 		display: inline-table !important;
@@ -109,4 +120,3 @@ p, h1, h2, h3, h4, h5 {
 		padding-top: 30%;
 	}
 }
-

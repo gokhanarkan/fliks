@@ -1,4 +1,4 @@
-from .instance.config import *
+from .instance import *
 import redis
 import requests
 import json
@@ -9,7 +9,8 @@ def get_country_availability(netflixid):
     querystring = {"netflixid": netflixid}
     headers = country_headers
     try:
-        response = requests.request("GET", url, headers=headers, params=querystring)
+        response = requests.request(
+            "GET", url, headers=headers, params=querystring)
         data = json.loads(response.text)['results']
     except:
         return ["Not Available"]

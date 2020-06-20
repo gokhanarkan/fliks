@@ -1,10 +1,9 @@
 <div class="search-div">
-	<h1 class="search-h1">Search Content</h1>
+<h1 class="search-h1">Search Content</h1>
 	<form action="/" method="POST">
 		{% if existing_search %}
 		<input name="flix" class="form-control form-control-lg search-div" type="text" placeholder="Planet Earth"
-			pattern="[A-Za-z0-9\s]{2,29}" title="Minimum 2 and maximum 29 letters or numbers" required
-			value='{{ existing_search }}'>
+			pattern="[A-Za-z0-9\s]{2,29}" title="Minimum 2 and maximum 29 letters or numbers" required value='{{ existing_search }}'>
 		{% else %}
 		<input name="flix" class="form-control form-control-lg search-div" type="text" placeholder="Planet Earth"
 			pattern="[A-Za-z0-9\s]{2,29}" title="Minimum 2 and maximum 29 letters or numbers" required>
@@ -13,6 +12,6 @@
 		<button class="btn btn-danger" type="submit" name="netflix" value="netflix">Search on Netflix</button>
 	</form>
 	<button type="button" class="btn btn-link" data-toggle="modal" data-target="#infoModal">
-		What is this?
+	  What is this?
 	</button>
 </div>

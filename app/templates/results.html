@@ -1,21 +1,17 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h3 class="search-div" id="ondemand-results" style="margin-bottom:0;">Here is the result for "{{ search }}" in
-	{{ country }} </h3>
+<h3 class="search-div" id="ondemand-results" style="margin-bottom:0;">Here is the result for "{{ search }}" in {{ country }} </h3>
 
-<div class="btn-group search-h1">
-	<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-		aria-expanded="false">
-		Not your country?
-	</button>
-	<div class="dropdown-menu">
-		{% for country in supported_countries %}
-		<a class="dropdown-item"
-			onclick="ondemand_change_country('{{ search }}', '{{ country }}')">{{ country.upper() }}</a>
-		{% endfor %}
+	<div class="search-h1">
+		<h5>Not your country?</h5>
+		<select class="form-control country-select">
+			{% for country in supported_countries %}
+			<option
+				onclick="ondemand_change_country('{{ search }}', '{{ country }}')">{{ country.upper() }}</option>
+			{% endfor %}
+		</select>
 	</div>
-</div>
 
 <div id="ajax-results">
 
@@ -24,29 +20,29 @@
 {% if result %}
 
 <div id="original-results">
-	{% for item in result %}
+{% for item in result %}
 
-	<div class="card mb-3">
-		{% if item['picture'] %}
-		<img src="{{ item['picture'] }}" class="card-img-top">
-		{% else %}
-		<p class="card-text non-picture">Image is not available</p>
-		{% endif %}
-		<div class="card-body">
-			<h5 class="card-title">{{ item['name'] }}</h5>
-			<p class="card-text">Here are the current services that have {{ item['name'] }} on:</p>
-			{% for location in item['locations'] %}
-			{% if location[1] == None %}
-			<img src="{{ location[2] }}" alt="{{ location[0] }}">
-			{% else %}
-			<a href="{{ location[1] }}"><img src="{{ location[2] }}" alt="{{ location[0] }}"></a>
-			{% endif %}
-			{% endfor %}
-			<br>
-		</div>
-	</div>
+<div class="card mb-3">
+	{% if item['picture'] %}
+  	<img src="{{ item['picture'] }}" class="card-img-top">
+  	{% else %}
+  	<p class="card-text non-picture">Image is not available</p>
+  	{% endif %}
+  <div class="card-body">
+	    <h5 class="card-title">{{ item['name'] }}</h5>
+	    <p class="card-text">Here are the current services that have {{ item['name'] }} on:</p>
+	    {% for location in item['locations'] %}
+	        {% if location[1] == None %}
+	            <img src="{{ location[2] }}" alt="{{ location[0] }}">
+	        {% else %}
+	            <a href="{{ location[1] }}"><img src="{{ location[2] }}" alt="{{ location[0] }}"></a>
+	        {% endif %}
+	    {% endfor %}
+	    <br>
+  </div>
+</div>
 
-	{% endfor %}
+{% endfor %}
 </div>
 
 {% else %}

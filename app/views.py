@@ -17,8 +17,8 @@ def index():
                     country = "uk"
             except:
                 country = "uk"
+            # This function will be improved with ip address
             final_result = check_services(result, country)
-            print(final_result)
             return render_template('results.html', result=final_result, search=result, existing_search=result, country=country.upper(), supported_countries=ondemand_supported_countries)
         except:
             r = request.form['netflix']

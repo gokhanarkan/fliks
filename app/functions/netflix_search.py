@@ -10,7 +10,8 @@ def get_netflix_details(name):
                    "t": "ns", "cl": "all", "st": "adv", "ob": "Relevance", "p": "1", "sa": "or"}
     headers = netflix_headers
     try:
-        response = requests.request("GET", url, headers=headers, params=querystring)
+        response = requests.request(
+            "GET", url, headers=headers, params=querystring)
         data = json.loads(response.text)['ITEMS']
     except:
         return False

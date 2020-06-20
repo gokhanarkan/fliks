@@ -15,27 +15,44 @@
 {% else %}
 
 <h3 class="search-h1" id="country-results">
-  I couldn't detect your country or it's not available on the system.
-  So here are default results.
+  I couldn't detect your country or it's not available on the system. <br>
+  So here are the default results which is for United Kingdom.
 </h3>
 
 {% endif %}
 
-<div class="btn-group search-h1">
-  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-    aria-expanded="false">
+<div class="search-h1">
+  <h5>
     {% if country %}
     Not your country?
     {% else %}
     Check countries
     {% endif %}
-  </button>
-  <div class="dropdown-menu">
-    {% for country in supported_countries %}
-    <a class="dropdown-item"
-      onclick="change_country('{{ country }}', '{{ supported_countries[country] }}')">{{ supported_countries[country] }}</a>
+  </h5>
+  <select class="form-control country-select">
+    {% for countries in supported_countries %}
+
+    {% if countries == country %}
+
+    <option onclick="change_country('{{ countries }}', '{{ supported_countries[countries] }}')" selected>
+      {{ supported_countries[countries] }}</option>
+
+    {% else %}
+
+    {% if countries == 'gb' %}
+
+    <option onclick="change_country('{{ countries }}', '{{ supported_countries[countries] }}')" selected>
+      {{ supported_countries[countries] }}</option>
+
+    {% else %}
+
+    <option onclick="change_country('{{ countries }}', '{{ supported_countries[countries] }}')">
+      {{ supported_countries[countries] }}</option>
+
+    {% endif %}
+    {% endif %}
     {% endfor %}
-  </div>
+  </select>
 </div>
 
 <br>
@@ -62,6 +79,7 @@
         <img src="{{ item['image'] }}" class="card-img" alt="{{ item['title'] }}">
 
         {% endif %}
+
 
       </div>
       <div class="col-md-8">

@@ -15,9 +15,7 @@ country_headers = {
     'api-key': "THIRD API KEY"
 }
 apikey = 'API KEY TO FLUSH CACHES'
-supported_countries = {
-    'ar': 'Argentina ', 'au': 'Australia ', 'be': 'Belgium ', 'br': 'Brazil ', 'ca': 'Canada ', 'cz': 'Czech Republic ', 'fr': 'France ', 'de': 'Germany ', 'gr': 'Greece ', 'hk': 'Hong Kong ', 'hu': 'Hungary ', 'is': 'Iceland ', 'in': 'India ', 'il': 'Israel ', 'it': 'Italy ', 'jp': 'Japan ', 'lt': 'Lithuania ', 'mx': 'Mexico ',
-    'nl': 'Netherlands ', 'pl': 'Poland ', 'pt': 'Portugal ', 'ro': 'Romania ', 'ru': 'Russia', 'sg': 'Singapore ', 'sk': 'Slovakia ', 'za': 'South Africa', 'kr': 'South Korea', 'es': 'Spain ', 'se': 'Sweden ', 'ch': 'Switzerland ', 'th': 'Thailand ', 'tr': 'Turkey ', 'gb': 'United Kingdom', 'us': 'United States'
-}
+supported_countries = {'ar': 'Argentina ', 'au': 'Australia ', 'be': 'Belgium ', 'br': 'Brazil ', 'ca': 'Canada ', 'cz': 'Czech Republic ', 'fr': 'France ', 'de': 'Germany ', 'gr': 'Greece ', 'hk': 'Hong Kong ', 'hu': 'Hungary ', 'is': 'Iceland ', 'in': 'India ', 'il': 'Israel ', 'it': 'Italy ', 'jp': 'Japan ',
+                       'lt': 'Lithuania ', 'mx': 'Mexico ', 'nl': 'Netherlands ', 'pl': 'Poland ', 'pt': 'Portugal ', 'ru': 'Russia', 'sg': 'Singapore ', 'sk': 'Slovakia ', 'za': 'South Africa', 'kr': 'South Korea', 'es': 'Spain ', 'se': 'Sweden ', 'ch': 'Switzerland ', 'th': 'Thailand ', 'gb': 'United Kingdom', 'us': 'United States'}
 ondemand_supported_countries = ['uk', 'us', 'ar', 'at', 'au', 'be', 'br', 'ca', 'ch', 'cz', 'dk', 'de', 'ee', 'es', 'fr', 'hk', 'hu',
                                 'ie', 'il', 'in', 'is', 'it', 'jp', 'kr', 'lt', 'lv', 'mx', 'nl', 'no', 'nz', 'ph', 'pl', 'pt', 'ro', 'ru', 'se', 'sg', 'sk', 'th', 'za']

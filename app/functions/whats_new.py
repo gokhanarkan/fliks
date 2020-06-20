@@ -43,7 +43,7 @@ def get_whats_new(country):
         return final_result
     else:
         # Recursively sending the default value
-        return get_whats_new('us')
+        return get_whats_new('uk')
 
 
 def redis_content(country):
