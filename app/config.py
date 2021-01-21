@@ -1,3 +1,1 @@
-import os
-
-heroku_port = int(os.environ.get('PORT', 5000))
+PORT = 6666
