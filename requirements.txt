@@ -1,4 +1,4 @@
 requests==2.25.1
 redis==3.3.11
-Flask==1.1.1
+Flask==2.3.2
 ip2geotools==0.1.5
